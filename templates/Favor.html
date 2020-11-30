@@ -1,0 +1,44 @@
+  {% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+{% csrf_token %}
+ <div class = "center-column">
+    <div class = "row">
+    
+         {% for acc in playlist %}
+            {% if acc.fav == True %}
+                   <div class = "item-row">
+	       
+        
+			
+            
+           
+            
+           </head>
+         <body>
+      <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <img src="{{acc.pic.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{acc}}</h5>
+        <p class="card-text">{{acc.description}}</p>
+          <p><a href="{{acc.link}}"   target="_blank" class="btn btn-primary">Study it now</a></p>
+          <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'RemoveFavor' acc.id %}"> Remove </a>
+     
+     
+         
+           
+       </div>
+        </div>  
+        </div>
+            {% endif %}
+     
+
+
+         {% endfor%}
+  </div>
+ </div>
+
+ {% endblock%}
