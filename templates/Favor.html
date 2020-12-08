@@ -8,8 +8,8 @@
  <div class = "center-column">
     <div class = "row">
     
-         {% for acc in playlist %}
-            {% if acc.fav == True %}
+         {% for acc in items %}
+            
                    <div class = "item-row">
 	       
         
@@ -25,7 +25,7 @@
           <h5 class="card-title">{{acc}}</h5>
         <p class="card-text">{{acc.description}}</p>
           <p><a href="{{acc.link}}"   target="_blank" class="btn btn-primary">Study it now</a></p>
-          <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'RemoveFavor' acc.id %}"> Remove </a>
+          <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'RemoveFavor' request.user.account.id acc.id %}"> Remove </a>
      
      
          
@@ -33,7 +33,7 @@
        </div>
         </div>  
         </div>
-            {% endif %}
+         
      
 
 

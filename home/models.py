@@ -1,11 +1,26 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+
+
+
+class Account(models.Model):
+    user = models.OneToOneField(User,null = True, on_delete = models.CASCADE)
+    name = models.CharField(max_length=200 , null = True)
+    email = models.EmailField(max_length= 200, null = True)
+    date_created = models.DateTimeField(auto_now_add= True, null = True)
+
+    def __str__(self):
+        return str(self.name)
+
 
 class Playlist(models.Model):
     title = models.CharField(max_length= 200)
     fav = models.BooleanField(default = False)
     tag = models.CharField(max_length= 40)
-    description = models.TextField(max_length= 2000)
-    link = models.CharField(max_length=2000 , default='DEFAULT VALUE') 
+    description = models.CharField(max_length= 2000)
+    link = models.CharField(max_length=2000 , default='Add link here') 
     pic = models.ImageField(null = True , blank = True)
+    account = models.ForeignKey(Account, null = True, on_delete = models.SET_NULL)
     def __str__(self):
         return self.title

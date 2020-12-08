@@ -1,5 +1,7 @@
-<!doctype html>
 
+
+<!doctype html>
+{% load static %}
 <style>
    
 	input{
@@ -21,7 +23,7 @@
 		width: 1130px;
 		margin: 20px auto;
 		padding:20px;
-		background-color: #2F3F61;
+		background-color: #ffff;
 		border-radius: 3px;
 		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 	}
@@ -129,40 +131,43 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'Favor' request.user.account.id %}">Favorites</a>
+        <a class="nav-link" href="adminpage">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'about' %} ">About</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'ap' %} ">Add Playlist</a>
       </li>
     </ul>
   </div>
   <span class = "hello-msg">Hello, {{request.user}} </span>
   <span><a class = "hello-msg" href = "{% url 'logoutUser' %}">Logout </a></span>
 </nav>
-
 <body style="background-color:#274585;">
-  </nav>
-    <form class = "form-inline my-2 my-lg-0" action = "{% url 'search'%}">
-<div class="container h-10" >
-      <div class="d-flex justify-content-center h-10">
-        <div class="searchbar">
-          <input class="search_input" type="text" name="search" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
-      </div>
-    </div>
+<div class = "center-column">   
+<form method = "POST" action = 'ap'  enctype='multipart/form-data'>
+
+{% csrf_token %}
+
+{{form}}
+
+<input class="btn btn-sm btn-info" type="submit" value="Add playlist">
+
 </form>
+</div>
+ 
+    
+  </div>
+ </div>
 
-
-    {% block body %}
-
-
-
-
-    {% endblock body %}
+    
    
   </body>
 </html>
+
+
+
+
+
+

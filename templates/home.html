@@ -24,7 +24,7 @@
           <p><a href="{{acc.link}}"   target="_blank" class="btn btn-primary">Study it now</a></p>
 
         
-               <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'UpdateFavor' acc.id %}"> Add Favorite </a>
+               <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'UpdateFavor' request.user.account.id acc.id  %}"> Add Favorite </a>
            
 
        </div>
