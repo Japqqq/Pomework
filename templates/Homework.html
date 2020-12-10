@@ -1,7 +1,8 @@
-<!doctype html>
-
 <style>
-   
+	body{
+		background-color: #274585;
+	}
+
 	input{
 		width: 100%;
 		padding: 12px 20px;
@@ -18,20 +19,20 @@
 	}
 
 	.center-column{
-		width: 1130px;
+		width:600px;
 		margin: 20px auto;
 		padding:20px;
-		background-color: #2F3F61;
+		background-color: #fff;
 		border-radius: 3px;
 		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 	}
 
 	.item-row{
-		background-color: #2F3F61;
+		background-color: #906abd;
 		 margin: 10px;
 		padding: 30px;
 		border-radius: 3px;
-		
+		color: #fff;
 		font-size: 16px;
 		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
 	}
@@ -41,62 +42,17 @@
 		border-color: #e59400;
 	}
 	.navbar-inner {
-    background-color: #2F3F61;
+    background-color: #2F3F61
 }
 	.nav.navbar-nav.navbar-right li a {
     color: blue;
 }	
-.searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 60px;
-    background-color: #353b48;
-    border-radius: 30px;
-    padding: 10px;
-    }
+	
 
-    .search_input{
-    color: white;
-    border: 0;
-    outline: 0;
-    background: none;
-    width: 0;
-    caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 450px;
-    caret-color:red;    
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_icon{
-    background: white;
-    color: #e74c3c;
-    }
-
-    .search_icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color:white;
-    text-decoration:none;
-    }
-    .hello-msg{
-      font-size 18px;
-      color: #fff;
-      margin-right: 20px
-    }
 </style>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -146,26 +102,26 @@
   <span><a class = "hello-msg" href = "{% url 'logoutUser' %}">Logout </a></span>
 </nav>
 
-<body style="background-color:#274585;">
-  </nav>
-    <form class = "form-inline my-2 my-lg-0" action = "{% url 'search'%}">
-<div class="container h-10" >
-      <div class="d-flex justify-content-center h-10">
-        <div class="searchbar">
-          <input class="search_input" type="text" name="search" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
-      </div>
-    </div>
-</form>
+</head>
+<body style="background-color:#274585;" >
+    <div class = "center-column">
+ <form method = "POST" action = "">
+    {% csrf_token %}  
+        {{form.title}}
+        <input class="btn btn-info"  href="{% url 'homeworkpage' request.user.account.id %}"  type = 'submit' name = 'Add Todo'>
 
+    </form>
+<div class = 'item-row'>
+{% for item in items%}
+<br>
+  <p> {{item}} </p>
+    <a  type = "submit" class = "btn btn-sm btn-danger" href="{% url 'removehomework' request.user.account.id item.id %}"> Remove </a>
+<br>
 
-    {% block body %}
+{% endfor%} 
+</div>
+</div>
 
-
-
-
-    {% endblock body %}
-   
-  </body>
+</body>
 </html>
+

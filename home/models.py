@@ -11,7 +11,7 @@ class Account(models.Model):
     date_created = models.DateTimeField(auto_now_add= True, null = True)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.user)
 
 
 class Playlist(models.Model):
@@ -22,5 +22,14 @@ class Playlist(models.Model):
     link = models.CharField(max_length=2000 , default='Add link here') 
     pic = models.ImageField(null = True , blank = True)
     account = models.ForeignKey(Account, null = True, on_delete = models.SET_NULL)
+    def __str__(self):
+        return self.title
+
+
+class Todo(models.Model):
+    title = models.CharField(max_length=200 , default= 'title')
+    status = models.BooleanField(default= False)
+    account = models.ForeignKey(Account, null = True, on_delete = models.SET_NULL)
+    
     def __str__(self):
         return self.title

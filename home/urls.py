@@ -14,7 +14,11 @@ urlpatterns = [
     path('about' , views.about , name = 'about'),
     path('adminpage', views.admin , name = 'adminpage'),
     path('ap' , views.ap , name = 'ap'),
-    path('Delete/<str:pk>/' , views.delete , name = 'delete')
+    path('Delete/<str:pk>/' , views.delete , name = 'delete'),
+    path('homework/<str:pk>' , views.homework , name='homeworkpage'),
+    path('removehomework/<str:ak>/<str:pk>/' , views.removehomework , name = 'removehomework'),
+    
+
 
 
     

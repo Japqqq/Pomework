@@ -9,7 +9,7 @@ from home.forms import CreateUserform
 from home.decorations import unauthenticated_user , allowed_users , admin_only
 
 from django.contrib.auth.decorators import login_required
-from home.forms import PlaylistForm
+from home.forms import *
 
 
 
@@ -83,7 +83,7 @@ def register(request):
         
 
     return render(request ,'register.html' , context)
-@unauthenticated_user
+
 def loginPage(request):
 
     if request.method == 'POST':
@@ -135,5 +135,30 @@ def delete(request , pk):
     item = get_object_or_404(Playlist , id=pk)
     item.delete()
     return redirect('adminpage')
+
+@login_required(login_url='loginPage')
+def homework(request, pk):
+    form = HomeworkForm()
+    account = Account.objects.get(id = pk)
+    items = account.todo_set.all()
     
+    if request.method == "POST":
+        form = HomeworkForm(request.POST , request.FILES)
+        if form.is_valid():
+            hm = form.save()
+            account.todo_set.add(hm)
+             
+        
+            
     
+    context = { 'account' : account , 'items' : items , 'form' : form}
+    return render(request , 'Homework.html' , context)
+@login_required(login_url='loginPage')
+def removehomework(request, ak, pk):
+    accountme = Account.objects.get(id = ak)
+    item = get_object_or_404(Todo , id=pk)
+    accountme.todo_set.remove(item)
+    items = accountme.todo_set.all()
+    form = HomeworkForm()
+    context = { 'accountme' : accountme , 'items' : items , 'form' : form}
+    return render(request , 'Homework.html' , context)
