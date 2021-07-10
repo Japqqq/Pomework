@@ -82,8 +82,8 @@ def UpdateFavor(request ,ak , pk):
 @login_required(login_url='loginPage')
 def RemoveFavor(request ,ak, pk):
     account = Account.objects.get(id = ak)
-    item = get_object_or_404(Playlist , id=pk)
-    account.playlist_set.remove(item)
+    item = get_object_or_404(Shoes, id=pk)
+    account.shoes_set.remove(item)
    
 
     return redirect('/') 
