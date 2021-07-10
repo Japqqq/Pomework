@@ -33,3 +33,20 @@ class Todo(models.Model):
     
     def __str__(self):
         return self.title
+
+class Brand(models.Model):
+    Name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.Name
+
+class Shoes(models.Model):
+    title = models.CharField(max_length= 200)
+    status = models.BooleanField(default=False)
+    size = models.CharField(max_length= 40)
+    description = models.CharField(max_length= 2000)
+    brand = models.ForeignKey(Brand, null = True, on_delete = models.SET_NULL)
+    prize = models.IntegerField(max_length=999)
+    pic = models.ImageField(null = True , blank = True)
+    account = models.ForeignKey(Account, null = True, on_delete = models.SET_NULL)
+    def __str__(self):
+        return self.title

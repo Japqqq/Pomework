@@ -23,9 +23,13 @@
         <img src="{{acc.pic.url}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{acc}}</h5>
+     
         <p class="card-text">{{acc.description}}</p>
-          <p><a href="{{acc.link}}"   target="_blank" class="btn btn-primary">Study it now</a></p>
-          <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'RemoveFavor' request.user.account.id acc.id %}"> Remove </a>
+         <p class="card-text">Brand : {{acc.brand.Name}}</p>
+         <p class="card-text">Price : ₱{{acc.prize}}</p>
+           <p class="card-text">Size : {{acc.size}}</p>
+             <p class="card-text">Delivered : {{acc.status}}</p>
+          <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'RemoveFavor' request.user.account.id acc.id %}"> Cancel Order </a>
      
      
          

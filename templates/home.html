@@ -21,10 +21,14 @@
         <div class="card-body">
           <h5 class="card-title">{{acc}}</h5>
         <p class="card-text">{{acc.description}}</p>
-          <p><a href="{{acc.link}}"   target="_blank" class="btn btn-primary">Study it now</a></p>
+         <p class="card-text">Brand : {{acc.brand.Name}}</p>
+         <p class="card-text">Price : ₱{{acc.prize}}</p>
+           <p class="card-text">Size : {{acc.size}}</p>
+         
+          
 
         
-               <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'UpdateFavor' request.user.account.id acc.id  %}"> Add Favorite </a>
+               <a  type = "submit" class = "btn btn-sm btn-info" href="{% url 'UpdateFavor' request.user.account.id acc.id  %}"> Add to Cart </a>
            
 
        </div>

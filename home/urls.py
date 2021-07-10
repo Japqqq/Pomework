@@ -4,6 +4,7 @@ from home import views
 
 urlpatterns = [
     path('' , views.index, name ='home'),
+    path('test' , views.test),
     path('Favor/<str:pk>/', views.Favor, name = 'Favor'),
     path('UpdateFavor/<str:ak>/<str:pk>/' , views.UpdateFavor , name = 'UpdateFavor'),
     path('search' , views.search , name='search'),

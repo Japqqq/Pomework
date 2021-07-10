@@ -1,3 +1,7 @@
+import ast
+import copy
+
+
 from django.shortcuts import render , redirect
 from home.models import *
 from django.shortcuts import get_object_or_404
@@ -12,13 +16,44 @@ from django.contrib.auth.decorators import login_required
 from home.forms import *
 
 
+def convertExpr2Expression(Expr):
+        Expr.lineno = 0
+        Expr.col_offset = 0
+        result = ast.Expression(Expr.value, lineno=0, col_offset = 0)
 
+        return result
+def exec_with_return(code):
+    code_ast = ast.parse(code)
 
+    init_ast = copy.deepcopy(code_ast)
+    init_ast.body = code_ast.body[:-1]
+
+    last_ast = copy.deepcopy(code_ast)
+    last_ast.body = code_ast.body[-1:]
+
+    exec(compile(init_ast, "<ast>", "exec"), globals())
+    if type(last_ast.body[0]) == ast.Expr:
+        return eval(compile(convertExpr2Expression(last_ast.body[0]), "<ast>", "eval"),globals())
+    else:
+        exec(compile(last_ast, "<ast>", "exec"),globals())
+
+def wrapper(code):
+    return code
+def test(request):
+
+    if request.method == "POST":
+       
+        a = request.POST
+        b = exec_with_return(a['answer'])
+        print('asdsada' , b)
+        context = {'answer' : b    }
+
+    return render(request , 'test.html', context )
 
 @login_required(login_url='loginPage')
 
 def index(request):
-    playlist = Playlist.objects.all()
+    playlist = Shoes.objects.all()
     context = {'playlist' : playlist}
     if request.user.is_superuser:
         
@@ -29,7 +64,7 @@ def index(request):
 @login_required(login_url='loginPage')
 def Favor(request , pk):
     account = Account.objects.get(id = pk)
-    items = account.playlist_set.all()
+    items = account.shoes_set.all()
     playlist = Playlist.objects.all()
     context = { 'account' : account , 'items' : items}
     return render(request , 'Favor.html' , context)
@@ -37,8 +72,8 @@ def Favor(request , pk):
 @login_required(login_url='loginPage')
 def UpdateFavor(request ,ak , pk):
     account = Account.objects.get(id = ak)
-    item = get_object_or_404(Playlist , id=pk)
-    account.playlist_set.add(item)
+    item = get_object_or_404(Shoes , id=pk)
+    account.shoes_set.add(item)
 
   
 
@@ -55,9 +90,9 @@ def RemoveFavor(request ,ak, pk):
 def search(request):
     search_query = request.GET.get('search' , '')
     if search_query:
-        playlist = Playlist.objects.filter(description__icontains = search_query)
+        playlist = Shoes.objects.filter(description__icontains = search_query)
     else:
-        playlist = Playlist.objects.all()
+        playlist = Shoes.objects.all()
     
     context = {
         'playlist' : playlist
@@ -111,17 +146,17 @@ def about(request):
 
 @admin_only
 def admin(request):
-    playlist = Playlist.objects.all()
+    playlist = Shoes.objects.all()
     context = {'playlist' : playlist}
     
 
     return render(request , 'admin.html' , context)
 
 def ap(request):
-    form = PlaylistForm()
+    form = ShoeForm()
 
     if request.method == "POST":
-        form = PlaylistForm(request.POST , request.FILES)
+        form = ShoeForm(request.POST , request.FILES)
         if form.is_valid(): 
             form.save()
         return redirect('adminpage')
