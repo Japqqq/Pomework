@@ -167,7 +167,7 @@ def ap(request):
     return render(request , 'ap.html' , context)
 @admin_only
 def delete(request , pk):
-    item = get_object_or_404(Playlist , id=pk)
+    item = get_object_or_404(Shoes , id=pk)
     item.delete()
     return redirect('adminpage')
 
