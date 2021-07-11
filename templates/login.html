@@ -14,12 +14,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			/* background: #7abecc !important; */
+			background-color: #fff;
+			/* background-image: url("background.jpg"); */
 		}
 		.user_card {
 			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
+			margin: auto;
 			background: #74cfbf;
 			position: relative;
 			display: flex;
@@ -29,8 +30,7 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
-
+			border-radius: 10px;
 		}
 
 		.form_container {
@@ -39,14 +39,22 @@
 
 		#form-title{
 			color: #fff;
-			
+			font-family: 'Courier New', Courier, monospace;
+			font-weight: 700;
 		}
 
 		.login_btn {
 			width: 100%;
 			background: #33ccff !important;
 			color: white !important;
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 17px;
 		}
+
+		.login_btn:hover {
+			font-weight: 700;
+		}
+
 		.login_btn:focus {
 			box-shadow: none !important;
 			outline: 0px !important;
@@ -72,12 +80,56 @@
 			padding: 10px;
 			margin-top: 10px;
 		}
+		
+		.logo-sneak {
+			margin: auto;
+    		position: absolute;
+		}
+
+		.logo-img {
+			border-radius: 10px 10px 0px 0;
+    		padding-bottom: 10px;
+    		border-bottom: 1px solid #000;
+		}
+
+		footer {
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 17px;
+			text-align: center;
+			border-top: 1px solid #7abecc;
+		}
+
+		.account {
+			font-style: italic;
+			font-family: 'Gill Sans MT';
+
+		}
+
+		.h-100 {
+			height: 90% !important;
+		}
+
+		.form-control {
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		.h1-top {
+			background-color: #7abecc;
+			color: #7abecc;
+			height: 2em;
+			width: 100%;
+		}
+
 	</style>
 
 </head>
 <body>
+	<div><h1 class="h1-top">SNEAK</h1></div>
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
+			<div class="logo-sneak">
+				<img src="../static/images/logo.jpg" class="logo-img" alt="SNEAK">
+			</div>
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 
@@ -101,20 +153,23 @@
 						</div>
 
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 				<input class="btn login_btn" type="submit" value="Login">
+				 				<input class="btn login_btn" type="submit" value=" ► | Login">
 				   			</div>
 					</form>
 
 				</div>
 			{{form.errors}}
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center links account">
 						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
 					</div>
 			
 				</div>
 			</div>
 		</div>
+	</div>
+	<div>
+		<footer class="footer"> © | All Right Reserve 2021 | SNEAK CORP. | PRIVACY POLICY</footer>
 	</div>
 </body>
 
