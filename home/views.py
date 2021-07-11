@@ -90,7 +90,7 @@ def RemoveFavor(request ,ak, pk):
 def search(request):
     search_query = request.GET.get('search' , '')
     if search_query:
-        playlist = Shoes.objects.filter(description__icontains = search_query)
+        playlist = Shoes.objects.filter(title__icontains  = search_query)
     else:
         playlist = Shoes.objects.all()
     
