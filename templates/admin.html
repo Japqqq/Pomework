@@ -21,13 +21,13 @@
 		width: 1130px;
 		margin: 20px auto;
 		padding:20px;
-		background-color: #2F3F61;
+		background-color: white;
 		border-radius: 3px;
 		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
 	}
 
 	.item-row{
-		background-color: #2F3F61;
+		background-color: #747474;
 		 margin: 10px;
 		padding: 30px;
 		border-radius: 3px;
@@ -41,14 +41,14 @@
 		border-color: #e59400;
 	}
 	.navbar-inner {
-    background-color: #2F3F61;
+    background-color: #fff;
 }
 	.nav.navbar-nav.navbar-right li a {
     color: blue;
 }	
 .searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
+    margin-bottom: 10px;
+    margin-top: 15px;
     height: 60px;
     background-color: #353b48;
     border-radius: 30px;
@@ -64,6 +64,7 @@
     caret-color:transparent;
     line-height: 40px;
     transition: width 0.4s linear;
+    font-family: 'Courier New', Courier, monospace;
     }
 
     .searchbar:hover > .search_input{
@@ -91,9 +92,46 @@
     }
     .hello-msg{
       font-size: 18px;
-      color: #fff;
-      margin-right: 20px
+      color: #000;
+      margin-right: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 600;
     }
+
+    .navbar-brand {
+      font-family: 'Courier New', Courier, monospace;
+      color: #fff;
+      font-size: 30px !important; 
+      font-weight: 700;
+      padding-right: 10px;
+      margin-right: 0px !important;
+    }
+
+    .nav-link {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 18px !important;
+      color: #000;
+      padding: 10px 25px !important;
+      font-weight: 600;
+    }
+
+    .logo-img-sneak {
+      border-radius: 5px;
+      width: 50%;
+    }
+
+    .logo-sneak-div {
+      margin: auto;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+	
 </style>
 <html lang="en">
   <head>
@@ -141,7 +179,7 @@
   <span><a class = "hello-msg" href = "{% url 'logoutUser' %}">Logout </a></span>
 </nav>
 
-<body style="background-color:#274585;">
+<body style="background-color:white;">
   </nav>
     <form class = "form-inline my-2 my-lg-0" action = "{% url 'search'%}">
 <div class="container h-10" >
