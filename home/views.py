@@ -50,6 +50,7 @@ def test(request):
 
     return render(request , 'test.html', context )
 
+
 @login_required(login_url='loginPage')
 
 def index(request):
