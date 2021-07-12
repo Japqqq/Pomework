@@ -188,7 +188,7 @@ def homework(request, pk):
             
     
     context = { 'account' : account , 'items' : items , 'form' : form}
-    return render(request , 'Homework.html' , context)
+    return render(request , 'tobuy.html' , context)
 @login_required(login_url='loginPage')
 def removehomework(request, ak, pk):
     accountme = Account.objects.get(id = ak)
@@ -197,4 +197,4 @@ def removehomework(request, ak, pk):
     items = accountme.todo_set.all()
     form = HomeworkForm()
     context = { 'accountme' : accountme , 'items' : items , 'form' : form}
-    return render(request , 'Homework.html' , context)
+    return render(request , 'tobuy.html' , context)
